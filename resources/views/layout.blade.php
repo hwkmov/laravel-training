@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ $items[0]->title }}</title>
         <link rel="stylesheet" href="{{ asset('css/base.css') }}">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/skeleton.css') }}">
@@ -38,9 +37,9 @@
                 <aside>
                     <h4>カテゴリ</h4>
                     <ul>
-                        <li>side bar</li>
-                        <li>side bar</li>
-                        <li>side bar</li>
+                        @foreach($categories as $category)
+                        <li><a href="{{ url('/category/'.$category->slug) }}">{{ $category->name }}({{ $category->posts_count }})</a></li>
+                        @endforeach
                     </ul>
                 </aside>
             </div>

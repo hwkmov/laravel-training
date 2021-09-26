@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('post', 'App\Http\Controllers\PostController@index');
+Route::get('post/{post_slug}', 'App\Http\Controllers\PostController@show');
+Route::get('category/{category_slug}/', 'App\Http\Controllers\PostController@category');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

@@ -1,3 +1,8 @@
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
 
 div.header {
     width: 920px;
@@ -22,16 +27,43 @@ div.main-container {
     margin: 10px auto 10px;
 }
 
+.breadcrumbs {
+    display: inline-block;
+}
+
 div.content {
     flex-basis: 600px;
 }
 
+/* list */
+.category-title {
+    font-size:2rem;
+}
+.article-item {
+    padding-left: 10px;
+    border-left: 5px solid #888888;
+}
+
+.article-item a {
+    display: block;
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+.article-item a:hover {
+    color: black;
+    background-color: #F0F0F0;
+    transition: background-color 0.5s;
+}
+
+/* sidebar */
 div.sidebar {
     flex-basis: 280px;
     margin-left: 40px;
     /* border: 1px solid; */
 }
 
+/* footer */
 .footer {
     width: 920px;
     margin: 30px auto 30px;
