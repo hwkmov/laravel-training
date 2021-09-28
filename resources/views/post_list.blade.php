@@ -2,13 +2,17 @@
 
 @section('content')
 @if($items->isNotEmpty())
-    <p class="category-title">{{ $items[0]->category->name }}の投稿一覧</p>
+    <p class="category-title">{{ $keyword }}の投稿一覧</p>
     @foreach ($items as $item)
         <div class="article-item">
             <a href="{{ url('/post/'.$item->slug) }}">
                 <h2>{{ $item->title }}</h2>
-                <p>{{ $item->category->name }}
-                タグ：{{ $item->id }}<br>
+                <p>カテゴリ：{{ $item->category->name }}<br>
+                タグ：
+                @foreach($item->tags as $tag)
+                    {{ $tag->name }}&nbsp;
+                @endforeach
+                <br>
                 {{ $item->created_at }}</p>
                 <p class="excerpt">{{ $item->excerpt }}</p>
             </a>

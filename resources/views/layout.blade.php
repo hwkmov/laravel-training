@@ -21,9 +21,9 @@
                 <aside>
                     <h4>新着記事</h4>
                     <ul>
-                        <li>side bar</li>
-                        <li>side bar</li>
-                        <li>side bar</li>
+                        @foreach($new_posts as $post)
+                        <li><a href="{{ url('/post/'.$post->slug) }}">{{ $post->title }}</a></li>
+                        @endforeach
                     </ul>
                 </aside>
                 <aside>

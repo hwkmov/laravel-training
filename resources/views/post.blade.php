@@ -10,7 +10,11 @@
         <a href="{{ url('/category/'.$item->category->slug) }}">{{$item->category->name}}</a>
     </div>
     <p>
-        タグ：{{ $item->id }}<br>
+        タグ：
+        @foreach($item->tags as $tag)
+            <a href="{{ url('/tag/'.$tag->slug) }}">{{ $tag->name }}</a>&nbsp;
+        @endforeach
+        <br>
         {{ $item->created_at }}
     </p>
     <p><img src="{{ asset('storage/'.$item->image) }}" width="600px"></p>
