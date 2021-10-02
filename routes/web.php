@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('page/{page_slug}', 'App\Http\Controllers\PageController@show');
 Route::get('post', 'App\Http\Controllers\PostController@index');
 Route::get('post/{post_slug}', 'App\Http\Controllers\PostController@show');
 Route::get('category/{category_slug}/', 'App\Http\Controllers\PostController@category');

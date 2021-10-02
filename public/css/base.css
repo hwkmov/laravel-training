@@ -3,22 +3,40 @@ a:link, a:visited {
     text-decoration: none;
 }
 
+ul, li {
+    list-style-type: none;
+}
 
 div.header {
     width: 920px;
-    display: flex;
-    justify-content: space-between;
-    margin: 30px auto 30px;
+    margin: 10px auto 20px;
     border-bottom: 1px solid #888888;
 }
 
-div.header div.header-title {
-    font-size: 3rem;
+.header-title {
+    font-size: 3.4rem;
 }
 
-div.header div {
-    display: inline-block;
+.header-item {
+    display: flex;
+    justify-content: space-between;
 }
+
+.search-box {
+    padding-top: 10px;
+}
+
+div.header ul {
+    display: flex;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+div.header li {
+    margin-right: 3rem;
+    margin-bottom: 0;
+}
+
 
 div.main-container {
     display: flex;
@@ -67,8 +85,18 @@ div.sidebar {
 .footer {
     width: 920px;
     margin: 30px auto 30px;
-    
+    padding-top: 20px;
+    padding-left: 20px;
     border-top: 1px solid #888888;
+}
+
+.footer > ul {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.footer > ul li {
+    width: 20rem;
 }
 
 /* Larger than tablet */

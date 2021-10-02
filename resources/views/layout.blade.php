@@ -7,10 +7,15 @@
     </head>
     <body>
         <div class="header">
-            <div class="header-title">laravel-training-cms</div>
+            <div class="header-item">
+                <span class="header-title">laravel-training-cms</span>
+                <div class=search-box>
+                    <input type="text" placeholder="記事の検索" class="searchbox">
+                    <button class="searchbutton">検索</button>
+                </div>
+            </div>
             <div>
-                <input type="text" placeholder="記事の検索" class="searchbox">
-                <button class="searchbutton">検索</button>
+                {{ menu('header') }}
             </div>
         </div>
         <div class="main-container">
@@ -45,7 +50,7 @@
             </div>
         </div>
         <div class="footer">
-            <div>footer</div>
+            {{ menu('footer') }}
         </div>
     </body>
 </html>
