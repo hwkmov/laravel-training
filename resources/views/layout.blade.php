@@ -34,9 +34,9 @@
                 <aside>
                     <h4>人気記事</h4>
                     <ul>
-                        <li>side bar</li>
-                        <li>side bar</li>
-                        <li>side bar</li>
+                        @foreach($pageviews as $pageview)
+                        <li><a href="{{ url('/post/'.$pageview->slug) }}">{{ $pageview->post->title }}</a></li>
+                        @endforeach
                     </ul>
                 </aside>
                 <aside>
