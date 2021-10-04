@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="{{ asset('css/base.css') }}">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/skeleton.css') }}">
+        <title>{{ $title }} - laravel-training-cms</title>
     </head>
     <body>
         <div class="header">

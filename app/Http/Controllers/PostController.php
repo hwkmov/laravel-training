@@ -13,45 +13,63 @@ class PostController extends Controller
 {
     public function index(Request $request) 
     {
-        $items = Post::all();
         $categories = Category::withCount('posts')->get();
         $new_posts = Post::orderBy('created_at', 'desc')->take(3)->get();
         $pageviews = Pageview::where('url', 'like', '%/post%')
                              ->orderByDesc('pageviews')->limit(5)->get();
-
-        return view('post', ['items' => $items, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        
+        $item = Post::all()->first();
+        if(empty($item)) {
+            return view('post_not_found', ['title' => '投稿がありません', 'item' => $item, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        } else {
+            return view('post', ['title' => $item->title, 'item' => $item, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        }
     }
 
     public function category(Request $request, $category_slug) 
     {
-        $items = Category::where('slug', $category_slug)->first()->posts;
         $categories = Category::withCount('posts')->get();
         $new_posts = Post::orderBy('created_at', 'desc')->take(3)->get();
         $pageviews = Pageview::where('url', 'like', '%/post%')
                              ->orderByDesc('pageviews')->limit(5)->get();
 
-        return view('post_list', ['keyword'=> $category_slug, 'items' => $items, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        $category = Category::where('slug', $category_slug)->first();
+        if(empty($category)) {
+            return view('post_not_found', ['title' => '投稿がありません', 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        } else {
+            $items = $category->posts;
+            return view('post_list', ['title' => $category->name, 'keyword'=> $category->name, 'items' => $items, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        }
     }
 
     public function tag(Request $request, $tag_slug) 
     {
-        $items = Tag::where('slug', $tag_slug)->first()->posts;
         $categories = Category::withCount('posts')->get();
         $new_posts = Post::orderBy('created_at', 'desc')->take(3)->get();
         $pageviews = Pageview::where('url', 'like', '%/post%')
                              ->orderByDesc('pageviews')->limit(5)->get();
 
-        return view('post_list', ['keyword'=> $tag_slug, 'items' => $items, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        $tag = Tag::where('slug', $tag_slug)->first();
+        if(empty($tag)) {
+            return view('post_not_found', ['title' => '投稿がありません', 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        } else {
+            $items = $tag->posts;
+            return view('post_list', ['title' => $tag->name, 'keyword'=> $tag->name, 'items' => $items, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        }
     }
 
     public function show(Request $request, $post_slug)
     {
-        $item = Post::where('slug', $post_slug)->first();
         $categories = Category::withCount('posts')->get();
         $new_posts = Post::orderBy('created_at', 'desc')->take(3)->get();
         $pageviews = Pageview::where('url', 'like', '%/post%')
                              ->orderByDesc('pageviews')->limit(5)->get();
-
-        return view('post', ['item' => $item, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        
+        $item = Post::where('slug', $post_slug)->first();
+        if(empty($item)) {
+            return view('post_not_found', ['title' => '投稿がありません', 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        } else {
+            return view('post', ['title' => $item->title, 'item' => $item, 'new_posts'=>$new_posts, 'categories' => $categories, 'pageviews' => $pageviews]);
+        }
     }
 }
